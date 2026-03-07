@@ -35,6 +35,8 @@ Creature Countdown challenges players to type as many animal names as possible b
 Simply open `index.html` in any modern web browser. No installation or build process required!
 
 ### Docker Deployment
+The Docker image is automatically built and published to GitHub Container Registry via CI/CD.
+
 Run with Docker Compose:
 ```bash
 docker-compose up -d

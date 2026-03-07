@@ -1,5 +1,5 @@
 services:
   web:
-    build: .
+    image: ghcr.io/slmingol/creature-countdown:main
     ports:
       - "3991:80"
