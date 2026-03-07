@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .demo-section {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .timer-display {
+            font-size: 2em;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+            font-weight: 600;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .timer-display.warning {
+            color: #ff6b6b;
+            animation: pulseBig 0.5s ease-in-out infinite;
+            transform: scale(11);
+            transform-origin: center;
+        }
+
+        @keyframes pulseBig {
+            0%, 100% { transform: scale(11); }
+            50% { transform: scale(11.7); }
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #14b8a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d9488;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-section">
+        <h2>Normal Timer (>10 seconds)</h2>
+        <div class="timer-display" id="normalTimer">
+            <span>0:45</span>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Warning Timer (<10 seconds)</h2>
+        <div class="timer-display warning" id="warningTimer">
+            <span>0:07</span>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Live Countdown</h2>
+        <div class="timer-display" id="liveTimer">
+            <span id="countdown">0:15</span>
+        </div>
+        <button onclick="startDemo()">Start 15 Second Demo</button>
+    </div>
+
+    <script>
+        let timeLeft = 15;
+        let interval;
+
+        function startDemo() {
+            const liveTimer = document.getElementById('liveTimer');
+            const countdown = document.getElementById('countdown');
+            
+            // Reset
+            clearInterval(interval);
+            timeLeft = 15;
+            liveTimer.classList.remove('warning');
+            
+            interval = setInterval(() => {
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                countdown.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 10 && timeLeft > 0) {
+                    liveTimer.classList.add('warning');
+                } else {
+                    liveTimer.classList.remove('warning');
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    countdown.textContent = '0:00';
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creature Countdown</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <!-- Version Number -->
+    <div class="version-number">v1.0.0</div>
+    
+    <!-- How to Play Banner -->
+    <div id="howToPlayBanner" class="top-banner hidden">
+        <div class="banner-content">
+            <span class="close-banner" id="closeBanner">&times;</span>
+            <h3>🎮 Welcome to Creature Countdown!</h3>
+            <p>List as many animals as you can before time runs out. Each correct animal gives you bonus time. <a href="#" id="learnMoreLink">Learn more</a></p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <img src="logo.png" alt="Creature Countdown" class="game-logo">
+            <p class="subtitle">List animals until failure</p>
+            <button id="toggleSettings" class="settings-icon">⚙️</button>
+        </header>
+
+        <div id="menu" class="menu">
+            <a href="#" id="toggleHowToPlay" class="how-to-link">💡 How to Play</a>
+            
+            <!-- How to Play Widget -->
+            <div id="howToPlayWidget" class="help-widget hidden">
+                <div class="help-header">
+                    <h2>How to Play</h2>
+                    <span class="widget-close" id="closeWidget">&times;</span>
+                </div>
+                <ul class="instructions">
+                    <li>List as many animals as you can</li>
+                    <li>Animals must be real (from our database of 5000+ animals)</li>
+                    <li>You have limited time, but get more time for each animal</li>
+                    <li>No overlapping terms (e.g., "bear" and "polar bear")</li>
+                    <li>When time runs out, game over!</li>
+                </ul>
+            </div>
+            
+            <!-- Settings Panel -->
+            <div id="settingsPanel" class="settings-panel hidden">
+                <label>
+                    Theme:
+                    <select id="themeSelect">
+                        <option value="system">System</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </label>
+                <label>
+                    Initial time (s):
+                    <input type="number" id="initialTime" value="60" min="10" max="300">
+                </label>
+                <label>
+                    Time increment (s):
+                    <input type="number" id="timeIncrement" value="5" min="1" max="30">
+                </label>
+                <label>
+                    <input type="checkbox" id="disableAnimations">
+                    Disable animations
+                </label>
+                <button id="showDatabaseBtn" class="settings-btn">📚 Show Animal Database</button>
+            </div>
+            
+            <!-- Database Modal -->
+            <div id="databaseModal" class="modal-overlay hidden">
+                <div class="database-modal">
+                    <div class="modal-header">
+                        <h2>Animal Database (5000 Animals)</h2>
+                        <span class="modal-close" id="closeDatabaseModal">&times;</span>
+                    </div>
+                    <div class="database-search">
+                        <input type="text" id="databaseSearch" placeholder="Search animals...">
+                    </div>
+                    <div class="database-content" id="databaseContent">
+                        <!-- Animals will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <button id="startBtn" class="btn-primary">Start Game</button>
+            </div>
+        </div>
+
+        <div id="game" class="game hidden">
+            <div class="game-header">
+                <div class="score-display">
+                    <span class="label">Score:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="timer-display" id="timerDisplay">
+                    <span id="timer">1:00</span>
+                </div>
+                <button id="cancelBtn" class="btn-cancel">✕ Cancel</button>
+            </div>
+
+            <div class="input-section">
+                <input 
+                    type="text" 
+                    id="animalInput" 
+                    placeholder="Type an animal name..." 
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <div id="feedback" class="feedback"></div>
+            </div>
+
+            <div class="animals-list-container">
+                <h3>Animals Listed (<span id="animalCount">0</span>)</h3>
+                <div id="animalsList" class="animals-list"></div>
+            </div>
+        </div>
+
+        <div id="gameOver" class="game-over hidden">
+            <div class="card">
+                <h2>Game Over!</h2>
+                <div class="final-score">
+                    <p>Final Score: <strong id="finalScore">0</strong></p>
+                    <p>Animals Listed: <strong id="finalCount">0</strong></p>
+                </div>
+                
+                <div class="animals-summary">
+                    <h3>Your Animals:</h3>
+                    <div id="finalAnimalsList" class="final-animals-list"></div>
+                </div>
+
+                <div class="button-group">
+                    <button id="playAgainBtn" class="btn-primary">Play Again</button>
+                    <button id="copyListBtn" class="btn-secondary">Copy List</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
