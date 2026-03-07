@@ -19,7 +19,15 @@ Creature Countdown challenges players to type as many animal names as possible b
 
 ## 🚀 Getting Started
 
+### Local Development
 Simply open `index.html` in any modern web browser. No installation or build process required!
+
+### Docker Deployment
+Run with Docker Compose:
+```bash
+docker-compose up -d
+```
+Access the game at `http://localhost:8080`
 
 ## 🎯 How to Play
 
@@ -55,6 +63,9 @@ Built with pure vanilla JavaScript, HTML5, and CSS3. No frameworks or dependenci
 - `script.js` - Game logic and 5,000-animal database
 - `logo.png` - Game logo
 - `timer-demo.html` - Timer animation demo page
+- `Dockerfile` - Container configuration using Caddy
+- `docker-compose.yml` - Docker Compose deployment
+- `Caddyfile` - Caddy web server configuration
 
 ### Browser Compatibility
 

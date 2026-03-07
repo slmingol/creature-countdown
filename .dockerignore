@@ -1,0 +1,24 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+
+# Docker (but keep Caddyfile for the build)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor
+.vscode
+.idea
+*.swp
+*.swo
+*~
