@@ -39,7 +39,7 @@ Run with Docker Compose:
 ```bash
 docker-compose up -d
 ```
-Access the game at `http://localhost:8080`
+Access the game at `http://localhost:3991`
 
 ## 🎯 How to Play
 
