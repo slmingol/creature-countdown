@@ -1,14 +1,5 @@
-version: '3.8'
-
 services:
-  creature-countdown:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: creature-countdown
+  web:
+    build: .
     ports:
       - "8080:80"
-    restart: unless-stopped
-    labels:
-      - "com.creature-countdown.description=Creature Countdown - Race against time to name as many animals as you can"
-      - "com.creature-countdown.version=1.0.0"
