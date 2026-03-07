@@ -40,8 +40,9 @@ body {
     align-items: flex-start;
     justify-content: center;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
     padding-top: 40px;
+    padding-bottom: 40px;
     transition: background 0.3s ease;
 }
 
@@ -526,6 +527,7 @@ header h1 {
 
 .btn-primary, .btn-secondary {
     width: 25%;
+    min-width: 160px;
     padding: 15px 30px;
     font-size: 1.1em;
     font-weight: bold;
@@ -820,4 +822,24 @@ header h1 {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive styles for small mobile screens (e.g. Pixel 8) */
+@media (max-width: 480px) {
+    .btn-primary, .btn-secondary {
+        width: 60%;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .game-header {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 20px;
+    }
 }
