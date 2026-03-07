@@ -1,5 +1,13 @@
 # 🦊 Creature Countdown
 
+![Version](https://img.shields.io/badge/version-1.0.0-teal)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Caddy](https://img.shields.io/badge/Caddy-1F88C0?logo=caddy&logoColor=white)
+
 A fast-paced animal naming game where you race against time to list as many animals as you can!
 
 ## 🎮 Game Overview
