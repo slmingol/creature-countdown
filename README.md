@@ -1,5 +1,9 @@
 # 🦊 Creature Countdown
 
+<p align="center">
+  <img src="logo.png" alt="Creature Countdown Logo" width="200">
+</p>
+
 ![Version](https://img.shields.io/badge/version-1.0.0-teal)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
