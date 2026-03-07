@@ -7,12 +7,23 @@ on:
     paths-ignore:
       - 'VERSION'
       - '.github/workflows/version-bump.yml'
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version bump type'
+        required: false
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
 
 jobs:
   bump-version:
     runs-on: ubuntu-latest
-    # Skip if commit message contains [skip version]
-    if: "!contains(github.event.head_commit.message, '[skip version]')"
+    # Skip if commit message contains [skip version] (only for push events)
+    if: "github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip version]')"
     
     permissions:
       contents: write
@@ -36,12 +47,19 @@ jobs:
           minor="${parts[1]}"
           patch="${parts[2]}"
           
-          # Increment patch version
-          new_patch=$((patch + 1))
-          NEW_VERSION="${major}.${minor}.${new_patch}"
+          # Determine version bump type
+          BUMP_TYPE="${{ github.event.inputs.version_type || 'patch' }}"
+          
+          if [ "$BUMP_TYPE" = "major" ]; then
+            NEW_VERSION="$((major + 1)).0.0"
+          elif [ "$BUMP_TYPE" = "minor" ]; then
+            NEW_VERSION="${major}.$((minor + 1)).0"
+          else
+            NEW_VERSION="${major}.${minor}.$((patch + 1))"
+          fi
           
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
-          echo "Bumping version from $VERSION to $NEW_VERSION"
+          echo "Bumping $BUMP_TYPE version from $VERSION to $NEW_VERSION"
       
       - name: Update version files
         run: |
