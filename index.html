@@ -25,6 +25,7 @@
         <header>
             <img src="logo.png" alt="Creature Countdown" class="game-logo">
             <p class="subtitle">List animals until failure</p>
+            <button id="toggleStats" class="stats-icon">📊</button>
             <button id="toggleSettings" class="settings-icon">⚙️</button>
         </header>
 
@@ -69,6 +70,39 @@
                     Disable animations
                 </label>
                 <button id="showDatabaseBtn" class="settings-btn">📚 Show Animal Database</button>
+            </div>
+            
+            <!-- Stats Modal -->
+            <div id="statsModal" class="modal-overlay hidden">
+                <div class="stats-modal">
+                    <div class="modal-header">
+                        <h2>📊 Game Statistics</h2>
+                        <span class="modal-close" id="closeStatsModal">&times;</span>
+                    </div>
+                    <div class="stats-content">
+                        <div class="stat-item">
+                            <span class="stat-label">Games Played</span>
+                            <span class="stat-value" id="statGamesPlayed">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Best Score</span>
+                            <span class="stat-value" id="statBestScore">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Most Animals (Single Game)</span>
+                            <span class="stat-value" id="statMostAnimals">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Animals Named</span>
+                            <span class="stat-value" id="statTotalAnimals">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Average Animals Per Game</span>
+                            <span class="stat-value" id="statAvgAnimals">0</span>
+                        </div>
+                        <button id="resetStatsBtn" class="btn-reset-stats">Reset Statistics</button>
+                    </div>
+                </div>
             </div>
             
             <!-- Database Modal -->

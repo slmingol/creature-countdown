@@ -624,6 +624,15 @@ const closeWidgetBtn = document.getElementById('closeWidget');
 const toggleSettingsBtn = document.getElementById('toggleSettings');
 const settingsPanel = document.getElementById('settingsPanel');
 const animalInput = document.getElementById('animalInput');
+const toggleStatsBtn = document.getElementById('toggleStats');
+const statsModal = document.getElementById('statsModal');
+const closeStatsModal = document.getElementById('closeStatsModal');
+const resetStatsBtn = document.getElementById('resetStatsBtn');
+const statGamesPlayed = document.getElementById('statGamesPlayed');
+const statBestScore = document.getElementById('statBestScore');
+const statMostAnimals = document.getElementById('statMostAnimals');
+const statTotalAnimals = document.getElementById('statTotalAnimals');
+const statAvgAnimals = document.getElementById('statAvgAnimals');
 const showDatabaseBtn = document.getElementById('showDatabaseBtn');
 const databaseModal = document.getElementById('databaseModal');
 const closeDatabaseModal = document.getElementById('closeDatabaseModal');
@@ -749,6 +758,35 @@ databaseSearch.addEventListener('input', (e) => {
             item.classList.add('hidden');
         }
     });
+});
+
+// Stats modal event listeners
+toggleStatsBtn.addEventListener('click', () => {
+    loadStatsDisplay();
+    statsModal.classList.remove('hidden');
+});
+
+closeStatsModal.addEventListener('click', () => {
+    statsModal.classList.add('hidden');
+});
+
+statsModal.addEventListener('click', (e) => {
+    if (e.target === statsModal) {
+        statsModal.classList.add('hidden');
+    }
+});
+
+resetStatsBtn.addEventListener('click', () => {
+    if (confirm('Are you sure you want to reset all statistics? This cannot be undone.')) {
+        resetStats();
+    }
+});
+
+// Close stats modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !statsModal.classList.contains('hidden')) {
+        statsModal.classList.add('hidden');
+    }
 });
 
 // Close database modal with Escape key
@@ -907,10 +945,73 @@ function updateDisplay() {
     updateTimer();
 }
 
+// Stats functions
+function loadStats() {
+    const defaultStats = {
+        gamesPlayed: 0,
+        bestScore: 0,
+        mostAnimals: 0,
+        totalAnimals: 0
+    };
+    
+    const saved = localStorage.getItem('gameStats');
+    return saved ? JSON.parse(saved) : defaultStats;
+}
+
+function saveStats(stats) {
+    localStorage.setItem('gameStats', JSON.stringify(stats));
+}
+
+function updateStats(score, animalsCount) {
+    const stats = loadStats();
+    
+    stats.gamesPlayed++;
+    stats.totalAnimals += animalsCount;
+    
+    if (score > stats.bestScore) {
+        stats.bestScore = score;
+    }
+    
+    if (animalsCount > stats.mostAnimals) {
+        stats.mostAnimals = animalsCount;
+    }
+    
+    saveStats(stats);
+}
+
+function loadStatsDisplay() {
+    const stats = loadStats();
+    
+    statGamesPlayed.textContent = stats.gamesPlayed;
+    statBestScore.textContent = stats.bestScore;
+    statMostAnimals.textContent = stats.mostAnimals;
+    statTotalAnimals.textContent = stats.totalAnimals;
+    
+    const avgAnimals = stats.gamesPlayed > 0 
+        ? (stats.totalAnimals / stats.gamesPlayed).toFixed(1) 
+        : '0.0';
+    statAvgAnimals.textContent = avgAnimals;
+}
+
+function resetStats() {
+    const defaultStats = {
+        gamesPlayed: 0,
+        bestScore: 0,
+        mostAnimals: 0,
+        totalAnimals: 0
+    };
+    
+    saveStats(defaultStats);
+    loadStatsDisplay();
+}
+
 // End game
 function endGame() {
     gameState.gameActive = false;
     clearInterval(gameState.timerInterval);
+    
+    // Update stats
+    updateStats(gameState.score, gameState.listedAnimals.length);
     
     game.classList.add('hidden');
     gameOver.classList.remove('hidden');
