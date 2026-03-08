@@ -5,11 +5,19 @@
 	# Enable gzip compression
 	encode gzip
 	
-	# Set cache headers for static assets
-	@static {
-		path *.css *.js *.png *.jpg *.jpeg *.gif *.svg *.ico
+	# Disable caching for HTML, CSS, and JS files (for easier updates)
+	@nocache {
+		path *.html *.css *.js
 	}
-	header @static Cache-Control "public, max-age=31536000"
+	header @nocache Cache-Control "no-cache, no-store, must-revalidate"
+	header @nocache Pragma "no-cache"
+	header @nocache Expires "0"
+	
+	# Cache images for 1 day
+	@images {
+		path *.png *.jpg *.jpeg *.gif *.svg *.ico
+	}
+	header @images Cache-Control "public, max-age=86400"
 	
 	# Enable access logging
 	log {
