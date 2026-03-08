@@ -676,37 +676,26 @@ learnMoreLink.addEventListener('click', (e) => {
 toggleSettingsBtn.addEventListener('click', () => {
     settingsPanel.classList.toggle('hidden');
 });
-hardReloadBtn.addEventListener('click', async (e) => {
-    console.log('Hard reload button clicked');
-    e.preventDefault();
-    
-    // Show confirmation that button was clicked
-    const confirmed = confirm('This will clear the cache and reload the page. Continue?');
-    if (!confirmed) return;
-    
-    try {
-        // Clear all caches
-        if ('caches' in window) {
-            const cacheNames = await caches.keys();
-            console.log('Clearing caches:', cacheNames);
-            await Promise.all(cacheNames.map(name => caches.delete(name)));
-        }
+
+// Hard reload button handler
+if (hardReloadBtn) {
+    console.log('Hard reload button found, attaching listener');
+    hardReloadBtn.addEventListener('click', function(e) {
+        console.log('Hard reload button clicked!');
+        e.preventDefault();
+        e.stopPropagation();
         
-        // Add meta tag to prevent caching
-        const meta = document.createElement('meta');
-        meta.httpEquiv = 'Cache-Control';
-        meta.content = 'no-cache, no-store, must-revalidate';
-        document.head.appendChild(meta);
+        // Simple alert to confirm button works
+        alert('Button clicked! About to reload...');
         
-        // Force reload with cache busting
+        // Simple reload with cache busting
         const baseUrl = window.location.href.split('?')[0].split('#')[0];
-        window.location.href = baseUrl + '?v=' + Date.now();
-    } catch (error) {
-        console.error('Cache clear failed:', error);
-        alert('Cache clear failed, doing simple reload');
-        window.location.reload();
-    }
-});
+        window.location.href = baseUrl + '?nocache=' + new Date().getTime();
+    });
+} else {
+    console.error('Hard reload button not found in DOM');
+}
+
 animalInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         submitAnimal();
