@@ -676,17 +676,22 @@ learnMoreLink.addEventListener('click', (e) => {
 toggleSettingsBtn.addEventListener('click', () => {
     settingsPanel.classList.toggle('hidden');
 });
-hardReloadBtn.addEventListener('click', () => {
+hardReloadBtn.addEventListener('click', async () => {
     // Hard reload: clear cache and reload
-    if (caches) {
-        caches.keys().then(names => {
-            names.forEach(name => {
-                caches.delete(name);
-            });
-        });
+    try {
+        // Clear all caches
+        if ('caches' in window) {
+            const cacheNames = await caches.keys();
+            await Promise.all(cacheNames.map(name => caches.delete(name)));
+        }
+        
+        // Force reload from server with cache busting
+        window.location.href = window.location.href.split('?')[0] + '?nocache=' + Date.now();
+    } catch (error) {
+        console.error('Cache clear failed:', error);
+        // Fallback to simple reload
+        window.location.reload();
     }
-    // Force reload from server, bypassing cache
-    window.location.reload(true);
 });
 animalInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
