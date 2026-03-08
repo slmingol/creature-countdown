@@ -526,8 +526,8 @@ header h1 {
 }
 
 .btn-primary, .btn-secondary {
-    width: 25%;
-    min-width: 160px;
+    width: 80%;
+    max-width: 400px;
     padding: 15px 30px;
     font-size: 1.1em;
     font-weight: bold;
@@ -826,11 +826,6 @@ header h1 {
 
 /* Responsive styles for tablets and medium mobile screens */
 @media (max-width: 768px) {
-    .btn-primary, .btn-secondary {
-        width: 70%;
-        min-width: auto;
-    }
-
     .settings-icon, .stats-icon {
         top: 20px;
     }
@@ -853,12 +848,6 @@ header h1 {
 
 /* Responsive styles for small mobile screens (e.g. Pixel 8) */
 @media (max-width: 480px) {
-    .btn-primary, .btn-secondary {
-        width: 85%;
-        min-width: auto;
-        padding: 15px 20px;
-    }
-
     header h1 {
         font-size: 2em;
     }
@@ -882,5 +871,13 @@ header h1 {
 
     .score-display {
         font-size: 1.2em;
+    }
+}
+
+/* Desktop and larger screens - make buttons narrower */
+@media (min-width: 769px) {
+    .btn-primary, .btn-secondary {
+        width: 50%;
+        max-width: 350px;
     }
 }
