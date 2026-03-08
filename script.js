@@ -625,6 +625,7 @@ const toggleSettingsBtn = document.getElementById('toggleSettings');
 const settingsPanel = document.getElementById('settingsPanel');
 const animalInput = document.getElementById('animalInput');
 const toggleStatsBtn = document.getElementById('toggleStats');
+const hardReloadBtn = document.getElementById('hardReload');
 const statsModal = document.getElementById('statsModal');
 const closeStatsModal = document.getElementById('closeStatsModal');
 const resetStatsBtn = document.getElementById('resetStatsBtn');
@@ -674,6 +675,18 @@ learnMoreLink.addEventListener('click', (e) => {
 });
 toggleSettingsBtn.addEventListener('click', () => {
     settingsPanel.classList.toggle('hidden');
+});
+hardReloadBtn.addEventListener('click', () => {
+    // Hard reload: clear cache and reload
+    if (caches) {
+        caches.keys().then(names => {
+            names.forEach(name => {
+                caches.delete(name);
+            });
+        });
+    }
+    // Force reload from server, bypassing cache
+    window.location.reload(true);
 });
 animalInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {

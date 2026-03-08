@@ -166,6 +166,31 @@ header h1 {
     transform: scale(1.1);
 }
 
+.reload-icon {
+    position: fixed;
+    top: 40px;
+    right: 120px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 1.3em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.reload-icon:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(360deg);
+}
+
 .card {
     background: var(--card-bg);
     color: var(--card-text);
@@ -826,7 +851,7 @@ header h1 {
 
 /* Responsive styles for tablets and medium mobile screens */
 @media (max-width: 768px) {
-    .settings-icon, .stats-icon {
+    .settings-icon, .stats-icon, .reload-icon {
         top: 20px;
     }
 
@@ -836,6 +861,10 @@ header h1 {
 
     .stats-icon {
         right: 60px;
+    }
+
+    .reload-icon {
+        right: 105px;
     }
 
     .settings-panel {
