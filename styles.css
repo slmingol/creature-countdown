@@ -827,7 +827,9 @@ header h1 {
 /* Responsive styles for small mobile screens (e.g. Pixel 8) */
 @media (max-width: 480px) {
     .btn-primary, .btn-secondary {
-        width: 60%;
+        width: 80%;
+        min-width: auto;
+        padding: 15px 20px;
     }
 
     header h1 {
