@@ -676,20 +676,34 @@ learnMoreLink.addEventListener('click', (e) => {
 toggleSettingsBtn.addEventListener('click', () => {
     settingsPanel.classList.toggle('hidden');
 });
-hardReloadBtn.addEventListener('click', async () => {
-    // Hard reload: clear cache and reload
+hardReloadBtn.addEventListener('click', async (e) => {
+    console.log('Hard reload button clicked');
+    e.preventDefault();
+    
+    // Show confirmation that button was clicked
+    const confirmed = confirm('This will clear the cache and reload the page. Continue?');
+    if (!confirmed) return;
+    
     try {
         // Clear all caches
         if ('caches' in window) {
             const cacheNames = await caches.keys();
+            console.log('Clearing caches:', cacheNames);
             await Promise.all(cacheNames.map(name => caches.delete(name)));
         }
         
-        // Force reload from server with cache busting
-        window.location.href = window.location.href.split('?')[0] + '?nocache=' + Date.now();
+        // Add meta tag to prevent caching
+        const meta = document.createElement('meta');
+        meta.httpEquiv = 'Cache-Control';
+        meta.content = 'no-cache, no-store, must-revalidate';
+        document.head.appendChild(meta);
+        
+        // Force reload with cache busting
+        const baseUrl = window.location.href.split('?')[0].split('#')[0];
+        window.location.href = baseUrl + '?v=' + Date.now();
     } catch (error) {
         console.error('Cache clear failed:', error);
-        // Fallback to simple reload
+        alert('Cache clear failed, doing simple reload');
         window.location.reload();
     }
 });
