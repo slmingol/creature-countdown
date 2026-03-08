@@ -824,16 +824,47 @@ header h1 {
     background: rgba(255, 255, 255, 0.7);
 }
 
+/* Responsive styles for tablets and medium mobile screens */
+@media (max-width: 768px) {
+    .btn-primary, .btn-secondary {
+        width: 70%;
+        min-width: auto;
+    }
+
+    .settings-icon, .stats-icon {
+        top: 20px;
+    }
+
+    .settings-icon {
+        right: 15px;
+    }
+
+    .stats-icon {
+        right: 60px;
+    }
+
+    .settings-panel {
+        top: 70px;
+        right: 10px;
+        width: calc(100% - 20px);
+        max-width: 350px;
+    }
+}
+
 /* Responsive styles for small mobile screens (e.g. Pixel 8) */
 @media (max-width: 480px) {
     .btn-primary, .btn-secondary {
-        width: 80%;
+        width: 85%;
         min-width: auto;
         padding: 15px 20px;
     }
 
     header h1 {
         font-size: 2em;
+    }
+
+    .game-logo {
+        max-width: 200px;
     }
 
     .game-header {
@@ -843,5 +874,13 @@ header h1 {
 
     .card {
         padding: 20px;
+    }
+
+    .timer-display {
+        font-size: 1.5em;
+    }
+
+    .score-display {
+        font-size: 1.2em;
     }
 }
