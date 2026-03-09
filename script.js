@@ -919,24 +919,14 @@ const themeSelect = document.getElementById('themeSelect');
 console.log('Setting up event listeners...');
 console.log('startBtn:', startBtn);
 
-// Simple approach: just use click events
-// The CSS touch-action: manipulation should handle the delay removal
+// Simple, robust click handling
 startBtn.addEventListener('click', function(e) {
-    console.log('click event fired on startBtn');
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('Calling startGame from click');
+    console.log('Start button clicked!');
     startGame();
-}, false);
+});
 
 cancelBtn.addEventListener('click', resetToMenu);
-
-playAgainBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    resetToMenu();
-}, false);
-
+playAgainBtn.addEventListener('click', resetToMenu);
 copyListBtn.addEventListener('click', copyAnimalsList);
 closeBannerBtn.addEventListener('click', closeBanner);
 toggleHowToPlayBtn.addEventListener('click', (e) => {
