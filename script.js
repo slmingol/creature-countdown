@@ -916,22 +916,48 @@ const disableAnimationsCheckbox = document.getElementById('disableAnimations');
 const themeSelect = document.getElementById('themeSelect');
 
 // Event listeners
-startBtn.addEventListener('click', startGame);
-// Add touchstart for better mobile support
-if ('ontouchstart' in window) {
-    startBtn.addEventListener('touchstart', function(e) {
-        e.preventDefault();
+// Use a flag to prevent double-firing on mobile
+let touchHandled = false;
+
+console.log('Setting up event listeners...');
+console.log('startBtn:', startBtn);
+
+startBtn.addEventListener('touchend', function(e) {
+    console.log('touchend event fired on startBtn');
+    e.preventDefault();
+    if (!touchHandled) {
+        touchHandled = true;
+        console.log('Calling startGame from touchend');
         startGame();
-    }, { passive: false });
-}
+        setTimeout(() => { touchHandled = false; }, 300);
+    }
+}, { passive: false });
+
+startBtn.addEventListener('click', function(e) {
+    console.log('click event fired on startBtn');
+    if (!touchHandled) {
+        console.log('Calling startGame from click');
+        startGame();
+    }
+});
+
 cancelBtn.addEventListener('click', resetToMenu);
-playAgainBtn.addEventListener('click', resetToMenu);
-if ('ontouchstart' in window) {
-    playAgainBtn.addEventListener('touchstart', function(e) {
-        e.preventDefault();
+
+playAgainBtn.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    if (!touchHandled) {
+        touchHandled = true;
         resetToMenu();
-    }, { passive: false });
-}
+        setTimeout(() => { touchHandled = false; }, 300);
+    }
+}, { passive: false });
+
+playAgainBtn.addEventListener('click', function(e) {
+    if (!touchHandled) {
+        resetToMenu();
+    }
+});
+
 copyListBtn.addEventListener('click', copyAnimalsList);
 closeBannerBtn.addEventListener('click', closeBanner);
 toggleHowToPlayBtn.addEventListener('click', (e) => {
@@ -1122,6 +1148,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Start game
 function startGame() {
+    console.log('startGame function called!');
+    console.log('Menu element:', menu);
+    console.log('Game element:', game);
+    
     // Get settings
     gameState.initialTime = parseInt(initialTimeInput.value) || 60;
     gameState.timeIncrement = parseInt(timeIncrementInput.value) || 5;
@@ -1130,11 +1160,15 @@ function startGame() {
     gameState.listedAnimals = [];
     gameState.gameActive = true;
 
+    console.log('Game state initialized:', gameState);
+
     // Update UI
     menu.classList.add('hidden');
     game.classList.remove('hidden');
     updateDisplay();
     animalInput.focus();
+
+    console.log('UI updated, game should be visible');
 
     // Start timer
     startTimer();
