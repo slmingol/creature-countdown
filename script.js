@@ -919,11 +919,41 @@ const themeSelect = document.getElementById('themeSelect');
 console.log('Setting up event listeners...');
 console.log('startBtn:', startBtn);
 
-// Global touch debugging
+// EMERGENCY DEBUG - Body level touch detection
 let touchCount = 0;
-document.addEventListener('touchstart', function(e) {
+let clickCount = 0;
+
+// Test touches on the body itself
+document.body.addEventListener('touchstart', function(e) {
     touchCount++;
-    console.log('GLOBAL touchstart detected!', touchCount, e.target);
+    console.log('BODY touchstart!', touchCount, e.target);
+    alert('TOUCHSTART WORKS! Count: ' + touchCount);
+}, { passive: true });
+
+document.body.addEventListener('click', function(e) {
+    clickCount++;
+    console.log('BODY click!', clickCount, e.target);
+}, { passive: true });
+
+// Emergency debug box
+const emergencyDebug = document.getElementById('emergencyDebug');
+if (emergencyDebug) {
+    emergencyDebug.addEventListener('touchstart', function(e) {
+        console.log('Emergency debug touched!');
+        emergencyDebug.style.background = 'lime';
+        emergencyDebug.textContent = 'TOUCH WORKS! Tap count: ' + touchCount;
+    }, { passive: true });
+    
+    emergencyDebug.addEventListener('click', function(e) {
+        console.log('Emergency debug clicked!');
+        emergencyDebug.style.background = 'blue';
+        emergencyDebug.textContent = 'CLICK WORKS! Count: ' + clickCount;
+    });
+}
+
+// Global touch debugging
+document.addEventListener('touchstart', function(e) {
+    console.log('GLOBAL touchstart detected!', e.target);
     const debugEl = document.getElementById('touchDebug');
     if (debugEl) {
         debugEl.textContent = `Touch detected! Count: ${touchCount}`;
