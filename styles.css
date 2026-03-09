@@ -571,6 +571,8 @@ header h1 {
     transition: all 0.3s ease;
     margin: 10px auto 0;
     display: block;
+    position: relative;
+    z-index: 10;
     /* Mobile touch improvements */
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(20, 184, 166, 0.3);

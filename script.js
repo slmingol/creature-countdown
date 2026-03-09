@@ -916,47 +916,26 @@ const disableAnimationsCheckbox = document.getElementById('disableAnimations');
 const themeSelect = document.getElementById('themeSelect');
 
 // Event listeners
-// Use a flag to prevent double-firing on mobile
-let touchHandled = false;
-
 console.log('Setting up event listeners...');
 console.log('startBtn:', startBtn);
 
-startBtn.addEventListener('touchend', function(e) {
-    console.log('touchend event fired on startBtn');
-    e.preventDefault();
-    if (!touchHandled) {
-        touchHandled = true;
-        console.log('Calling startGame from touchend');
-        startGame();
-        setTimeout(() => { touchHandled = false; }, 300);
-    }
-}, { passive: false });
-
+// Simple approach: just use click events
+// The CSS touch-action: manipulation should handle the delay removal
 startBtn.addEventListener('click', function(e) {
     console.log('click event fired on startBtn');
-    if (!touchHandled) {
-        console.log('Calling startGame from click');
-        startGame();
-    }
-});
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Calling startGame from click');
+    startGame();
+}, false);
 
 cancelBtn.addEventListener('click', resetToMenu);
 
-playAgainBtn.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    if (!touchHandled) {
-        touchHandled = true;
-        resetToMenu();
-        setTimeout(() => { touchHandled = false; }, 300);
-    }
-}, { passive: false });
-
 playAgainBtn.addEventListener('click', function(e) {
-    if (!touchHandled) {
-        resetToMenu();
-    }
-});
+    e.preventDefault();
+    e.stopPropagation();
+    resetToMenu();
+}, false);
 
 copyListBtn.addEventListener('click', copyAnimalsList);
 closeBannerBtn.addEventListener('click', closeBanner);
