@@ -1,5 +1,9 @@
-// IMMEDIATE TEST - Alert on page load
-alert('JavaScript is LOADING! If you see this, JS works!');
+// IMMEDIATE TEST - Change visual indicator
+const jsTest = document.getElementById('jsLoadTest');
+if (jsTest) {
+    jsTest.style.background = 'lime';
+    jsTest.innerHTML = '✅ JavaScript IS loaded!';
+}
 
 // Animal database - 5000 animals with Wikipedia articles
 const ANIMALS = [
