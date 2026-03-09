@@ -755,7 +755,7 @@ const ANIMALS = [
     'masked shrew', 'cinereus shrew', 'mount lyell shrew', 'preble shrew', 'prairie shrew', 'hayden shrew', 'southeastern shrew', 'smoky shrew', 'long-tailed shrew', 'gaspe shrew',
     'maryland shrew', 'st lawrence island shrew', 'pribilof island shrew', 'barren ground shrew', 'tundra shrew', 'montane shrew', 'dwarf shrew', 'american pygmy shrew', 'eurasian pygmy shrew', 'etruscan shrew',
     'savi pygmy shrew', 'asian lesser shrew', 'american water shrew', 'pacific water shrew', 'glacier bay water shrew', 'marsh shrew', 'fog shrew', 'vagrant shrew', 'dusky shrew', 'ornate shrew',
-    'trowbridge shrew', 'pacific shrew', 'inyo shrew', 'arizona shrew', 'crawford's gray shrew', 'carmen mountain shrew', 'mexican small-eared shrew', 'cockrum shr ew', 'nelson shrew', 'merriam shrew',
+    'trowbridge shrew', 'pacific shrew', 'inyo shrew', 'arizona shrew', "crawford's gray shrew", 'carmen mountain shrew', 'mexican small-eared shrew', 'cockrum shrew', 'nelson shrew', 'merriam shrew',
     'enders small-eared shrew', 'scaly-footed small-eared shrew', 'wandering shrew', 'tien shan shrew', 'laxmann shrew', 'eurasian common shrew', 'taiga shrew', 'siberian large-toothed shrew', 'lesser shrew', 'bicolored shrew',
     'flat-headed shrew', 'crowned shrew', 'armored shrew', 'hero shrew', 'lesser red musk shrew', 'asian house shrew', 'etruscan white-toothed shrew', 'lesser white-toothed shrew', 'greater white-toothed shrew', 'crocidura',
     'eurasian mole', 'blind mole', 'roman mole', 'iberian mole', 'balkan mole', 'levant mole', 'persian mole', 'small japanese mole', 'tokuda mole', 'sado mole',
