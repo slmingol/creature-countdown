@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+/* Ensure all buttons and interactive elements work well on mobile */
+button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
 :root {
     --bg-gradient-start: #14b8a6;
     --bg-gradient-end: #0d9488;
@@ -141,6 +147,10 @@ header h1 {
     transform: rotate(90deg);
 }
 
+.settings-icon:active {
+    background: rgba(255, 255, 255, 0.4);
+}
+
 .stats-icon {
     position: fixed;
     top: 40px;
@@ -164,6 +174,11 @@ header h1 {
 .stats-icon:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
+}
+
+.stats-icon:active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.0);
 }
 
 .card {
@@ -347,10 +362,19 @@ header h1 {
     cursor: pointer;
     font-size: 0.9em;
     transition: background 0.2s ease;
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(20, 184, 166, 0.2);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .settings-btn:hover {
     background: var(--primary-dark);
+}
+
+.settings-btn:active {
+    background: #0a6d62;
 }
 
 .modal-overlay {
@@ -518,11 +542,21 @@ header h1 {
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(239, 68, 68, 0.2);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .btn-reset-stats:hover {
     background: #ef4444;
     color: white;
+}
+
+.btn-reset-stats:active {
+    background: #dc2626;
+    border-color: #dc2626;
 }
 
 .btn-primary, .btn-secondary {
@@ -537,6 +571,11 @@ header h1 {
     transition: all 0.3s ease;
     margin: 10px auto 0;
     display: block;
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(20, 184, 166, 0.3);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .btn-primary {
@@ -549,6 +588,11 @@ header h1 {
     box-shadow: 0 10px 20px rgba(20, 184, 166, 0.4);
 }
 
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba(20, 184, 166, 0.3);
+}
+
 .btn-secondary {
     background: #6c757d;
     color: white;
@@ -556,6 +600,10 @@ header h1 {
 
 .btn-secondary:hover {
     background: #5a6268;
+}
+
+.btn-secondary:active {
+    background: #4e555b;
 }
 
 .hidden {
@@ -660,11 +708,21 @@ header h1 {
     font-weight: 500;
     transition: all 0.2s ease;
     white-space: nowrap;
+    /* Mobile touch improvements */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .btn-cancel:hover {
     background: rgba(255, 255, 255, 0.4);
     transform: translateY(-1px);
+}
+
+.btn-cancel:active {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(0);
 }
 
 .score-display, .timer-display {

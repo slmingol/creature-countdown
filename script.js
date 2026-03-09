@@ -917,8 +917,21 @@ const themeSelect = document.getElementById('themeSelect');
 
 // Event listeners
 startBtn.addEventListener('click', startGame);
+// Add touchstart for better mobile support
+if ('ontouchstart' in window) {
+    startBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        startGame();
+    }, { passive: false });
+}
 cancelBtn.addEventListener('click', resetToMenu);
 playAgainBtn.addEventListener('click', resetToMenu);
+if ('ontouchstart' in window) {
+    playAgainBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        resetToMenu();
+    }, { passive: false });
+}
 copyListBtn.addEventListener('click', copyAnimalsList);
 closeBannerBtn.addEventListener('click', closeBanner);
 toggleHowToPlayBtn.addEventListener('click', (e) => {
