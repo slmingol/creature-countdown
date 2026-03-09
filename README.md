@@ -4,7 +4,7 @@
   <img src="logo.png" alt="Creature Countdown Logo" width="200">
 </p>
 
-![Version](https://img.shields.io/badge/version-1.0.17-teal)
+![Version](https://img.shields.io/badge/version-1.0.18-teal)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
@@ -112,6 +112,6 @@ Created as a tribute to the original game with expanded features and customizati
 
 ---
 
-**Version:** 1.0.17
+**Version:** 1.0.18
 
 Enjoy playing Creature Countdown! 🦁🐯🐻
