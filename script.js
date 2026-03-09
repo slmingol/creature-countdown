@@ -1,3 +1,6 @@
+// IMMEDIATE TEST - Alert on page load
+alert('JavaScript is LOADING! If you see this, JS works!');
+
 // Animal database - 5000 animals with Wikipedia articles
 const ANIMALS = [
     // Mammals - Carnivores
