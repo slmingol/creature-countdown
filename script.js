@@ -919,6 +919,27 @@ const themeSelect = document.getElementById('themeSelect');
 console.log('Setting up event listeners...');
 console.log('startBtn:', startBtn);
 
+// Global touch debugging
+let touchCount = 0;
+document.addEventListener('touchstart', function(e) {
+    touchCount++;
+    console.log('GLOBAL touchstart detected!', touchCount, e.target);
+    const debugEl = document.getElementById('touchDebug');
+    if (debugEl) {
+        debugEl.textContent = `Touch detected! Count: ${touchCount}`;
+        debugEl.style.background = 'lime';
+    }
+}, { passive: true });
+
+document.addEventListener('click', function(e) {
+    console.log('GLOBAL click detected!', e.target);
+    const debugEl = document.getElementById('touchDebug');
+    if (debugEl) {
+        debugEl.textContent = `Click detected! Target: ${e.target.id || e.target.tagName}`;
+        debugEl.style.background = 'cyan';
+    }
+}, { passive: true });
+
 // Simple, robust click handling
 startBtn.addEventListener('click', function(e) {
     console.log('Start button clicked!');
