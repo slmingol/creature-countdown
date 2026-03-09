@@ -916,65 +916,7 @@ const disableAnimationsCheckbox = document.getElementById('disableAnimations');
 const themeSelect = document.getElementById('themeSelect');
 
 // Event listeners
-console.log('Setting up event listeners...');
-console.log('startBtn:', startBtn);
-
-// EMERGENCY DEBUG - Body level touch detection
-let touchCount = 0;
-let clickCount = 0;
-
-// Test touches on the body itself
-document.body.addEventListener('touchstart', function(e) {
-    touchCount++;
-    console.log('BODY touchstart!', touchCount, e.target);
-    alert('TOUCHSTART WORKS! Count: ' + touchCount);
-}, { passive: true });
-
-document.body.addEventListener('click', function(e) {
-    clickCount++;
-    console.log('BODY click!', clickCount, e.target);
-}, { passive: true });
-
-// Emergency debug box
-const emergencyDebug = document.getElementById('emergencyDebug');
-if (emergencyDebug) {
-    emergencyDebug.addEventListener('touchstart', function(e) {
-        console.log('Emergency debug touched!');
-        emergencyDebug.style.background = 'lime';
-        emergencyDebug.textContent = 'TOUCH WORKS! Tap count: ' + touchCount;
-    }, { passive: true });
-    
-    emergencyDebug.addEventListener('click', function(e) {
-        console.log('Emergency debug clicked!');
-        emergencyDebug.style.background = 'blue';
-        emergencyDebug.textContent = 'CLICK WORKS! Count: ' + clickCount;
-    });
-}
-
-// Global touch debugging
-document.addEventListener('touchstart', function(e) {
-    console.log('GLOBAL touchstart detected!', e.target);
-    const debugEl = document.getElementById('touchDebug');
-    if (debugEl) {
-        debugEl.textContent = `Touch detected! Count: ${touchCount}`;
-        debugEl.style.background = 'lime';
-    }
-}, { passive: true });
-
-document.addEventListener('click', function(e) {
-    console.log('GLOBAL click detected!', e.target);
-    const debugEl = document.getElementById('touchDebug');
-    if (debugEl) {
-        debugEl.textContent = `Click detected! Target: ${e.target.id || e.target.tagName}`;
-        debugEl.style.background = 'cyan';
-    }
-}, { passive: true });
-
-// Simple, robust click handling
-startBtn.addEventListener('click', function(e) {
-    console.log('Start button clicked!');
-    startGame();
-});
+startBtn.addEventListener('click', startGame);
 
 cancelBtn.addEventListener('click', resetToMenu);
 playAgainBtn.addEventListener('click', resetToMenu);
