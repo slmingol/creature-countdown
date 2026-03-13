@@ -78,21 +78,21 @@ python3 -m http.server 8000
 
 ```bash
 # Build the Docker image
-docker build -t creature-countdown .
+podman build -t creature-countdown .
 
 # Run locally (serves on port 3991)
-docker-compose up -d
+podman compose up -d
 
 # Access at: http://localhost:3991
 
 # Stop the container
-docker-compose down
+podman compose down
 ```
 
 **Build validation**: Test that container serves correctly:
 ```bash
-docker build -t creature-countdown-test .
-docker run -d --rm -p 8888:80 --name creature-test creature-countdown-test
+podman build -t creature-countdown-test .
+podman run -d --rm -p 8888:80 --name creature-test creature-countdown-test
 curl http://localhost:8888/  # Should return HTML
 docker stop creature-test
 ```
@@ -181,7 +181,7 @@ Pushing to `main` branch triggers **TWO** GitHub Actions workflows:
 4. Pull and test new image:
    ```bash
    docker pull ghcr.io/slmingol/creature-countdown:main
-   docker run -p 8888:80 ghcr.io/slmingol/creature-countdown:main
+   podman run -p 8888:80 ghcr.io/slmingol/creature-countdown:main
    ```
 
 ## Known Issues & Gotchas
